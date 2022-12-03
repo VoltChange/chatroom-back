@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://81.68.67.192:3306/chatroom?characterEncodeing=UTF-8&serverTimezone=GMT%2B8
+    username: lp
+    password: lpetbnn
+    hikari:
+      max-lifetime: 120000
+  mvc:
+    pathmatch:
+      # 配置策略
+      matching-strategy: ant-path-matcher
