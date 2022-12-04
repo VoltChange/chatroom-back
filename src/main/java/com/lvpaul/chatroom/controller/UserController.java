@@ -26,8 +26,10 @@ public class UserController {
             return ResponseEntity.status(201).body("用户名不能为空");
         if(nameLoginVo.getPassword()==null||nameLoginVo.getPassword().equals(""))
             return ResponseEntity.status(201).body("密码不能为空");
-        if(userService.validateLoginByName(nameLoginVo.getUsername(),nameLoginVo.getPassword()))
-            return ResponseEntity.ok().body("成功");
+        if(userService.validateLoginByName(nameLoginVo.getUsername(),nameLoginVo.getPassword())){
+            User user = userService.briefInfo(nameLoginVo.getUsername());
+            return ResponseEntity.ok().body(user.getId());
+        }
         else
             return ResponseEntity.status(201).body("用户名或密码错误");
     }
@@ -44,9 +46,15 @@ public class UserController {
             return ResponseEntity.status(201).body("用户名已存在");
     }
     @ApiOperation("根据用户名返回简要信息")
-    @GetMapping("briefInfo")
-    public ResponseEntity briefInfo(@RequestParam String username){
+    @GetMapping("briefInfoByName")
+    public ResponseEntity briefInfoByName(@RequestParam String username){
         User user = userService.briefInfo(username);
+        return ResponseEntity.ok().body(user);
+    }
+    @ApiOperation("根据id返回简要信息")
+    @GetMapping("briefInfoById")
+    public ResponseEntity briefInfoById(@RequestParam Integer id){
+        User user = userService.briefInfoById(id);
         return ResponseEntity.ok().body(user);
     }
     @ApiOperation("修改个人简介")

@@ -10,4 +10,5 @@ public interface UserService {
     public boolean register(String username,String password);
     public User briefInfo(String username);
     public boolean changeIntroduction(Integer id,String introduction);
+    public User briefInfoById(Integer id);
 }

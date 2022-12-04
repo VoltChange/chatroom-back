@@ -68,4 +68,9 @@ public class UserServiceImpl implements UserService {
         user.setIntroduction(introduction);
         return userMapper.updateByPrimaryKey(user)>0;
     }
+
+    @Override
+    public User briefInfoById(Integer id) {
+        return userMapper.selectByPrimaryKey(id);
+    }
 }
